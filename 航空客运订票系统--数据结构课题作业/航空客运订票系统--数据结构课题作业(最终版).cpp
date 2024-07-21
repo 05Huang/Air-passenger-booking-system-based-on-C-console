@@ -1,4 +1,7 @@
-
+//ç®¡ç†å‘˜éªŒè¯å¯†ç ä¸º123456
+//ç”¨æˆ·ç™»å½•ï¼š
+//ç”¨æˆ·åï¼šé»„æš„
+//å¯†ç ï¼š239007045
 #include<iostream>
 #include<string>
 #include<windows.h>
@@ -8,83 +11,83 @@ using namespace std;
 
 typedef struct CNode 
 {
-    char name[20];//ĞÕÃû
-    int num;//¶©Æ±Êı 
-    char ID[20];//Éí·İÖ¤
+    char name[20];//å§“å
+    int num;//è®¢ç¥¨æ•° 
+    char ID[20];//èº«ä»½è¯
     char day[20];
-    int dengji;//²ÕµÈ¼¶
+    int dengji;//èˆ±ç­‰çº§
     CNode *next;
-} CNode, *CList;//³Ë¿Í½Úµã
+} CNode, *CList;//ä¹˜å®¢èŠ‚ç‚¹
 
 typedef struct HbNode 
 {
-    char name[20];//ĞÕÃû
-    char ID[20]; //Éí·İÖ¤
-    int num;//Ô¤¶¨ÊıÁ¿ 
+    char name[20];//å§“å
+    char ID[20]; //èº«ä»½è¯
+    int num;//é¢„å®šæ•°é‡ 
     struct HbNode *next;
-} QhbNode, *Phb;//ºò²¹¶ÓÁĞÖĞµÄ½Úµã
+} QhbNode, *Phb;//å€™è¡¥é˜Ÿåˆ—ä¸­çš„èŠ‚ç‚¹
 
 typedef struct Queue 
 {
-    Phb front;//µÈºòÌæ²¹¿Í»§Ãûµ¥ÓòµÄÍ·Ö¸Õë
-    Phb rear;//µÈºòÌæ²¹¿Í»§Ãûµ¥ÓòµÄÎ²Ö¸Õë
-} LinkQueue;//ºò²¹¶ÓÁĞ
+    Phb front;//ç­‰å€™æ›¿è¡¥å®¢æˆ·åå•åŸŸçš„å¤´æŒ‡é’ˆ
+    Phb rear;//ç­‰å€™æ›¿è¡¥å®¢æˆ·åå•åŸŸçš„å°¾æŒ‡é’ˆ
+} LinkQueue;//å€™è¡¥é˜Ÿåˆ—
 
 typedef struct hangban {
-    char qidian[20];//ÆğµãÕ¾Ãû
-    char zhongdian[20];//ÖÕµãÕ¾Ãû
-    char hbID[20];//º½°à±àºÅ 
-    char hbnum[20];//·É»úºÅ
-    char day[20];//·ÉĞĞÈÕÆÚ£¨ĞÇÆÚ¼¸£©
-    int maxnum;//×ÜÆ±Êı
-    int less;//×ÜÓàÆ±Á¿
-    int lessgrade1; //µÈ¼¶1Ê£ÓàÁ¿
-    int lessgrade2; //µÈ¼¶2Ê£ÓàÁ¿
+    char qidian[20];//èµ·ç‚¹ç«™å
+    char zhongdian[20];//ç»ˆç‚¹ç«™å
+    char hbID[20];//èˆªç­ç¼–å· 
+    char hbnum[20];//é£æœºå·
+    char day[20];//é£è¡Œæ—¥æœŸï¼ˆæ˜ŸæœŸå‡ ï¼‰
+    int maxnum;//æ€»ç¥¨æ•°
+    int less;//æ€»ä½™ç¥¨é‡
+    int lessgrade1; //ç­‰çº§1å‰©ä½™é‡
+    int lessgrade2; //ç­‰çº§2å‰©ä½™é‡
     hangban *next;
-    CList cusLinkList;//³ËÔ±Ãûµ¥£¬Ö¸Ïò³ËÔ±Ãûµ¥Á´±íµÄÍ·Ö¸Õë
-    LinkQueue wQgrade1;//µÈ¼¶1ºò²¹£¬µÈºòÌæ²¹µÄ¿Í»§Ãûµ¥Óò£¬Ö¸ÏòÒ»¸ö¶ÓÁĞ
-    LinkQueue wQgrade2;//µÈ¼¶2ºò²¹£¬µÈºòÌæ²¹µÄ¿Í»§Ãûµ¥Óò£¬Ö¸ÏòÒ»¸ö¶ÓÁĞ
-} hangban, *Phangban;//º½°à½Úµã
+    CList cusLinkList;//ä¹˜å‘˜åå•ï¼ŒæŒ‡å‘ä¹˜å‘˜åå•é“¾è¡¨çš„å¤´æŒ‡é’ˆ
+    LinkQueue wQgrade1;//ç­‰çº§1å€™è¡¥ï¼Œç­‰å€™æ›¿è¡¥çš„å®¢æˆ·åå•åŸŸï¼ŒæŒ‡å‘ä¸€ä¸ªé˜Ÿåˆ—
+    LinkQueue wQgrade2;//ç­‰çº§2å€™è¡¥ï¼Œç­‰å€™æ›¿è¡¥çš„å®¢æˆ·åå•åŸŸï¼ŒæŒ‡å‘ä¸€ä¸ªé˜Ÿåˆ—
+} hangban, *Phangban;//èˆªç­èŠ‚ç‚¹
 
-//ÖĞÆÚ´ğ±ç 
-int guanliyuanyemian();//¹ÜÀíÔ±Ò³Ãæ 
-int denglu(); //µÇÂ¼ 
-void initFlight(); //³õÊ¼»¯º½°àÁ´±í
-void sousuoflight();//ÓÉÆğµãÖÕµãËÑË÷º½°à 
-void sousuoFace();// ËÑË÷½çÃæ
-void printfall(hangban *pflight);//´òÓ¡È«²¿º½°àĞÅÏ¢
-int menu();// ²Ëµ¥½çÃæº¯Êı
-int zengjiaFlight();//Ôö¼Óº½°à 
-int shanchuFlight();// É¾³ıº½°à
-void sousuoFlight();//ÓÉÆğµãºÍÖÕµãËÑË÷¶ÔÓ¦º½°à 
-int Create(Phangban flight1);//½«º½°àĞÅÏ¢²åÈëµ½Á´±íÖĞ 
-int duibiFlight(hangban *flight, char flightCodeID[]);// ¶Ô±È²åÈëº½°à±êºÅ£¬·ÀÖ¹±êºÅÖØ¸´ 
-//ÆÚÄ©´ğ±ç 
-hangban *find(); // ÊäÈë±àºÅ·µ»Ø¶ÔÓ¦ĞÅÏ¢
-int initQueue(LinkQueue &q);//³õÊ¼»¯¶ÓÁĞ
-int initCusLinkList(CList &cusLinkList);//³õÊ¼»¯¶©Æ±³Ë¿ÍÁ´±í
-void addlink(CList &head, int need, char name[], char id[],char day[], int grade);//½«¶©Æ±³É¹¦µÄ³Ë¿Í½Úµã¼ÓÈëµ½ÒÑ¶©Æ±Á´±í 
-void pricusInfo();//Êä³öÒÑ¾­¶©Æ±µÄº¯Êı 
-void dingpiao();// ¶©Æ±º¯Êı 
-void fightinfo(hangban *p);//Êä³ö¶ÔÓ¦½ÚµãĞÅÏ¢ 
-LinkQueue enqueue(LinkQueue &q, char name[], int need, char id[]);//½«µÈ´ıµÄ¿Í»§Èë¶Ó
-void tuipiao();// ÍËÆ±
-void dingpiaoFace();//  ¶©Æ±½çÃæ
-void tuipiaoFace(); //ÍËÆ±½çÃæ
+//ä¸­æœŸç­”è¾© 
+int guanliyuanyemian();//ç®¡ç†å‘˜é¡µé¢ 
+int denglu(); //ç™»å½• 
+void initFlight(); //åˆå§‹åŒ–èˆªç­é“¾è¡¨
+void sousuoflight();//ç”±èµ·ç‚¹ç»ˆç‚¹æœç´¢èˆªç­ 
+void sousuoFace();// æœç´¢ç•Œé¢
+void printfall(hangban *pflight);//æ‰“å°å…¨éƒ¨èˆªç­ä¿¡æ¯
+int menu();// èœå•ç•Œé¢å‡½æ•°
+int zengjiaFlight();//å¢åŠ èˆªç­ 
+int shanchuFlight();// åˆ é™¤èˆªç­
+void sousuoFlight();//ç”±èµ·ç‚¹å’Œç»ˆç‚¹æœç´¢å¯¹åº”èˆªç­ 
+int Create(Phangban flight1);//å°†èˆªç­ä¿¡æ¯æ’å…¥åˆ°é“¾è¡¨ä¸­ 
+int duibiFlight(hangban *flight, char flightCodeID[]);// å¯¹æ¯”æ’å…¥èˆªç­æ ‡å·ï¼Œé˜²æ­¢æ ‡å·é‡å¤ 
+//æœŸæœ«ç­”è¾© 
+hangban *find(); // è¾“å…¥ç¼–å·è¿”å›å¯¹åº”ä¿¡æ¯
+int initQueue(LinkQueue &q);//åˆå§‹åŒ–é˜Ÿåˆ—
+int initCusLinkList(CList &cusLinkList);//åˆå§‹åŒ–è®¢ç¥¨ä¹˜å®¢é“¾è¡¨
+void addlink(CList &head, int need, char name[], char id[],char day[], int grade);//å°†è®¢ç¥¨æˆåŠŸçš„ä¹˜å®¢èŠ‚ç‚¹åŠ å…¥åˆ°å·²è®¢ç¥¨é“¾è¡¨ 
+void pricusInfo();//è¾“å‡ºå·²ç»è®¢ç¥¨çš„å‡½æ•° 
+void dingpiao();// è®¢ç¥¨å‡½æ•° 
+void fightinfo(hangban *p);//è¾“å‡ºå¯¹åº”èŠ‚ç‚¹ä¿¡æ¯ 
+LinkQueue enqueue(LinkQueue &q, char name[], int need, char id[]);//å°†ç­‰å¾…çš„å®¢æˆ·å…¥é˜Ÿ
+void tuipiao();// é€€ç¥¨
+void dingpiaoFace();//  è®¢ç¥¨ç•Œé¢
+void tuipiaoFace(); //é€€ç¥¨ç•Œé¢
 
 
 
-hangban *pFlight;//È«¾Ö½Úµã±äÁ¿ 
- //³õÊ¼ÊäÈëµÄº½°àĞÅÏ¢ 
+hangban *pFlight;//å…¨å±€èŠ‚ç‚¹å˜é‡ 
+ //åˆå§‹è¾“å…¥çš„èˆªç­ä¿¡æ¯ 
 hangban flight1[4] = {
-        {"ĞìÖİ", "ÄÏ¾©", "1", "A1185", "ĞÇÆÚÎå", 400, 200, 100, 100},
-        {"ËÕÖİ", "»´°²", "2", "B4521", "ĞÇÆÚÒ»", 300, 200, 100, 100},
-        {"±±¾©", "ÉÏº£", "3", "C8541", "ĞÇÆÚÁù", 500, 200, 100, 300},
-        {"ÑïÖİ", "Õò½­", "4", "D3652", "ĞÇÆÚÈı", 600, 200, 100, 400},
+        {"å¾å·", "å—äº¬", "1", "A1185", "æ˜ŸæœŸäº”", 400, 200, 100, 100},
+        {"è‹å·", "æ·®å®‰", "2", "B4521", "æ˜ŸæœŸä¸€", 300, 200, 100, 100},
+        {"åŒ—äº¬", "ä¸Šæµ·", "3", "C8541", "æ˜ŸæœŸå…­", 500, 200, 100, 300},
+        {"æ‰¬å·", "é•‡æ±Ÿ", "4", "D3652", "æ˜ŸæœŸä¸‰", 600, 200, 100, 400},
 };
 
 
-//³õÊ¼»¯º½°àÁ´±í 
+//åˆå§‹åŒ–èˆªç­é“¾è¡¨ 
 void initFlight() 
 {
     pFlight = new hangban;
@@ -92,7 +95,7 @@ void initFlight()
 }
 
 
-// ½«ÒÑÓĞº½°àĞÅÏ¢²åÈëÁ´±í
+// å°†å·²æœ‰èˆªç­ä¿¡æ¯æ’å…¥é“¾è¡¨
 int Create(Phangban flight1) 
  {
     hangban *p = pFlight, *q;
@@ -100,7 +103,7 @@ int Create(Phangban flight1)
         q = new hangban;
         if (q == NULL)
             return 0;
-        strcpy(q->qidian, flight1[i].qidian);//ÀûÓÃÁ´±í°ÑÃ¿¸öĞÅÏ¢Â¼Èë 
+        strcpy(q->qidian, flight1[i].qidian);//åˆ©ç”¨é“¾è¡¨æŠŠæ¯ä¸ªä¿¡æ¯å½•å…¥ 
         strcpy(q->zhongdian, flight1[i].zhongdian);
         strcpy(q->hbID, flight1[i].hbID);
         strcpy(q->hbnum, flight1[i].hbnum);
@@ -109,8 +112,8 @@ int Create(Phangban flight1)
         q->less = flight1[i].maxnum;
         q->lessgrade1 = flight1[i].lessgrade1;
         q->lessgrade2 = flight1[i].maxnum - flight1[i].lessgrade1;
-        initCusLinkList(q->cusLinkList); //³õÊ¼»¯ÒÑ¾­¶©Æ±³Ë¿ÍÁ´±í
-        initQueue(q->wQgrade1);// ½«Á½ÖÖµÈ¼¶µÄÆ±Èë¶Ó £¬·½±ãºóÃæÔ¤¶¨ÅÅ¶Ó 
+        initCusLinkList(q->cusLinkList); //åˆå§‹åŒ–å·²ç»è®¢ç¥¨ä¹˜å®¢é“¾è¡¨
+        initQueue(q->wQgrade1);// å°†ä¸¤ç§ç­‰çº§çš„ç¥¨å…¥é˜Ÿ ï¼Œæ–¹ä¾¿åé¢é¢„å®šæ’é˜Ÿ 
         initQueue(q->wQgrade2);
         q->next = p->next;
         p->next = q;
@@ -120,7 +123,7 @@ int Create(Phangban flight1)
 
 
 
-//³õÊ¼»¯ÒÑ¶©Æ±³Ë¿ÍÖ¸ÕëÁ´±í
+//åˆå§‹åŒ–å·²è®¢ç¥¨ä¹˜å®¢æŒ‡é’ˆé“¾è¡¨
 int initCusLinkList(CList &cusLinkList) 
 {
     CList q = cusLinkList;
@@ -128,58 +131,58 @@ int initCusLinkList(CList &cusLinkList)
     cusLinkList->next = NULL;
 }
 
-//³õÊ¼»¯´øÍ·½áµãµÄÁ´¶ÓÁĞ
+//åˆå§‹åŒ–å¸¦å¤´ç»“ç‚¹çš„é“¾é˜Ÿåˆ—
 int initQueue(LinkQueue &q) 
 {
     QhbNode *p;
     p = new QhbNode;
     p->next = NULL;
-    q.front = q.rear = p;//¶Ó¿Õ 
+    q.front = q.rear = p;//é˜Ÿç©º 
     return 1;
 }
 
 bool isValidID(const char id[]) 
 {
     int length = strlen(id);
-    // ¼ì²éÉí·İÖ¤ºÅÂë³¤¶ÈÊÇ·ñÎª18Î»Êı×Ö 
-    return (length == 18) && all_of(id, id + length, ::isdigit); // Ê¹ÓÃ C++11 µÄ all_of º¯Êı¼ì²éËùÓĞ×Ö·ûÊÇ·ñÎªÊı×Ö
+    // æ£€æŸ¥èº«ä»½è¯å·ç é•¿åº¦æ˜¯å¦ä¸º18ä½æ•°å­— 
+    return (length == 18) && all_of(id, id + length, ::isdigit); // ä½¿ç”¨ C++11 çš„ all_of å‡½æ•°æ£€æŸ¥æ‰€æœ‰å­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—
 }
 
-// ¶©Æ±º¯Êı
+// è®¢ç¥¨å‡½æ•°
 void dingpiao()  
 {
     hangban *info;
     int need, grade;
-    int num;//Ê£ÓàµÄµÈ¼¶1ÊıÄ¿»òÕßµÈ¼¶2ÊıÄ¿
+    int num;//å‰©ä½™çš„ç­‰çº§1æ•°ç›®æˆ–è€…ç­‰çº§2æ•°ç›®
     char name[20];
     char id[20];
     char day[20];
-    info = find();//ÊäÈëÏë¶©µÄº½°à£¬¿´ÊÇ·ñ»¹ÓĞ¿ÕÎ»ÖÃ£¬²¢·µ»Ø¸´ÖÆ½Úµã 
-    srand(time(0));// ³õÊ¼»¯Ëæ»úÊıÖÖ×Ó
-    int seatCount = 0; // ÒÑ·ÖÅä×ùÎ»µÄÊıÁ¿
+    info = find();//è¾“å…¥æƒ³è®¢çš„èˆªç­ï¼Œçœ‹æ˜¯å¦è¿˜æœ‰ç©ºä½ç½®ï¼Œå¹¶è¿”å›å¤åˆ¶èŠ‚ç‚¹ 
+    srand(time(0));// åˆå§‹åŒ–éšæœºæ•°ç§å­
+    int seatCount = 0; // å·²åˆ†é…åº§ä½çš„æ•°é‡
     if (info == NULL)
 	{
-        cout<<"²»´æÔÚ¸Ãº½°à"<<endl;
+        cout<<"ä¸å­˜åœ¨è¯¥èˆªç­"<<endl;
         dingpiao();
     }
-  	cout<<"ÇëÊäÈëÄúĞèÒªµÄÆ±Êı"<<endl;
+  	cout<<"è¯·è¾“å…¥æ‚¨éœ€è¦çš„ç¥¨æ•°"<<endl;
     while(1)
 	{
     	cin>>need;
     	if(need<=0) 
 		{
-    		cout<<"ÇëÊäÈëÕıÈ·µÄ¶©Æ±Êı"<<endl;
+    		cout<<"è¯·è¾“å…¥æ­£ç¡®çš„è®¢ç¥¨æ•°"<<endl;
 			continue;
 		}
     	else break;
 	} 
-    cout<<"ÇëÊäÈëÄúĞèÒªµÄ×ùÎ»µÈ¼¶"<<endl; 
+    cout<<"è¯·è¾“å…¥æ‚¨éœ€è¦çš„åº§ä½ç­‰çº§"<<endl; 
     while(1)
 	{
     	cin>>grade;
     	if(grade!=1&&grade!=2) 
 		{
-    		cout<<"ÇëÊäÈëÕıÈ·µÄ×ùÎ»²ÕµÈ¼¶"<<endl;
+    		cout<<"è¯·è¾“å…¥æ­£ç¡®çš„åº§ä½èˆ±ç­‰çº§"<<endl;
 			continue;
 		}
     	else break;
@@ -188,19 +191,19 @@ void dingpiao()
         num = info->lessgrade1;
     else
         num = info->lessgrade2;
-    if (need <= num) //¶©Æ±ÊıĞ¡ÓÚÊ£ÓàÊı 
+    if (need <= num) //è®¢ç¥¨æ•°å°äºå‰©ä½™æ•° 
 	{
 		vector<int> allocatedSeats;
         int i;
-        cout<<"ÇëÊäÈëÄúµÄÃû×Ö"<<endl;
+        cout<<"è¯·è¾“å…¥æ‚¨çš„åå­—"<<endl;
     	cin>>name;
-       	cout << "ÇëÊäÈëÄúµÄÉí·İÖ¤ºÅÂë: ";
+       	cout << "è¯·è¾“å…¥æ‚¨çš„èº«ä»½è¯å·ç : ";
 	    while (true) 
 		{
 	        cin>>id;
 	        if (!isValidID(id)) 
 			{
-	            cout << "Éí·İÖ¤ºÅÂë¸ñÊ½²»ÕıÈ·£¬ÇëÊäÈë18Î»µÄÊı×Ö: ";
+	            cout << "èº«ä»½è¯å·ç æ ¼å¼ä¸æ­£ç¡®ï¼Œè¯·è¾“å…¥18ä½çš„æ•°å­—: ";
 	            continue;
 	        } 
 			else 
@@ -208,59 +211,59 @@ void dingpiao()
 	            break;
 	        }
 	    }
-        cout<<"ÇëÊäÈëÄãµÄ·ÉĞĞÊ±¼ä£º"<<endl;
+        cout<<"è¯·è¾“å…¥ä½ çš„é£è¡Œæ—¶é—´ï¼š"<<endl;
 		cin>>day; 
         CList head = info->cusLinkList; 
-        addlink(head, need, name, id,day,grade);//¶©Æ±³É¹¦£¬²åÈë³ÉÔ±Ãûµ¥Á´±í
-		int seatStatus[info->maxnum] = {0}; // 0±íÊ¾×ùÎ»Î´±»Õ¼ÓÃ£¬1±íÊ¾ÒÑ±»Õ¼ÓÃ
-        // Ñ­»··ÖÅä×ùÎ»ºÅ
+        addlink(head, need, name, id,day,grade);//è®¢ç¥¨æˆåŠŸï¼Œæ’å…¥æˆå‘˜åå•é“¾è¡¨
+		int seatStatus[info->maxnum] = {0}; // 0è¡¨ç¤ºåº§ä½æœªè¢«å ç”¨ï¼Œ1è¡¨ç¤ºå·²è¢«å ç”¨
+        // å¾ªç¯åˆ†é…åº§ä½å·
         for (int i = 0; i < need; ++i) 
 		{
             int seatNumber;
             do {
                 seatNumber = rand() % info->maxnum + 1; 
-            } while (seatStatus[seatNumber - 1]); // ¼ì²é×ùÎ»ºÅÊÇ·ñÒÑ±»Õ¼ÓÃ 
-            seatStatus[seatNumber - 1] = 1; // ±ê¼Ç×ùÎ»ºÅÎªÒÑÕ¼ÓÃ
-            cout << name << "µÄ×ùÎ»ºÅÊÇ" << seatNumber << endl;
+            } while (seatStatus[seatNumber - 1]); // æ£€æŸ¥åº§ä½å·æ˜¯å¦å·²è¢«å ç”¨ 
+            seatStatus[seatNumber - 1] = 1; // æ ‡è®°åº§ä½å·ä¸ºå·²å ç”¨
+            cout << name << "çš„åº§ä½å·æ˜¯" << seatNumber << endl;
         }
         info->less -= need;
         if (grade == 1)
             info->lessgrade1 -= need;
         else
             info->lessgrade2 -= need;
-        cout<<"¶©Æ±³É¹¦"<<endl; 
+        cout<<"è®¢ç¥¨æˆåŠŸ"<<endl; 
     } 
 	else
         {
             char r;
-            cout<<"¸ÃµÈ¼¶µÄÆ±²»×ã£¬ÒÔÏÂÎª¸Ãº½°à³Ë¿ÍĞÅÏ¢"<<endl;
-            fightinfo(info);//Êä³ö¸Ãº½°àµÄ¶©Æ±ĞÅÏ¢ 
-           	cout<<"ÊÇ·ñ¸Ä±ä¶©Æ±¼Æ»®£¿Y/N"<<endl;
+            cout<<"è¯¥ç­‰çº§çš„ç¥¨ä¸è¶³ï¼Œä»¥ä¸‹ä¸ºè¯¥èˆªç­ä¹˜å®¢ä¿¡æ¯"<<endl;
+            fightinfo(info);//è¾“å‡ºè¯¥èˆªç­çš„è®¢ç¥¨ä¿¡æ¯ 
+           	cout<<"æ˜¯å¦æ”¹å˜è®¢ç¥¨è®¡åˆ’ï¼ŸY/N"<<endl;
             cin>>r;
-            if (r == 'Y' || r == 'y') //¸Ä±ä¼Æ»®£¬ÖØĞÂÑ¡Ôñº½°à
+            if (r == 'Y' || r == 'y') //æ”¹å˜è®¡åˆ’ï¼Œé‡æ–°é€‰æ‹©èˆªç­
 			{
-                dingpiao();//·µ»Ø¶©Æ±Ö÷Ò³Ãæ 
+                dingpiao();//è¿”å›è®¢ç¥¨ä¸»é¡µé¢ 
             } 
 			else 
 			{
-               cout<<"ÄúĞèÒªÅÅ¶ÓµÈºòÂğ?(Y/N)"<<endl;
+               cout<<"æ‚¨éœ€è¦æ’é˜Ÿç­‰å€™å—?(Y/N)"<<endl;
             	cin>>r;
                 if (r == 'Y' || r == 'y') 
 				{
-				//²»¸Ä±ä¼Æ»®£¬ÅÅ¶ÓºòÆ±
-                cout<<"ÇëÊäÈëÄúµÄĞÕÃû£¨ÅÅ¶Ó¶©Æ±£©:"<<endl;
+				//ä¸æ”¹å˜è®¡åˆ’ï¼Œæ’é˜Ÿå€™ç¥¨
+                cout<<"è¯·è¾“å…¥æ‚¨çš„å§“åï¼ˆæ’é˜Ÿè®¢ç¥¨ï¼‰:"<<endl;
                 cin>>name;
-                cout<<"ÇëÊäÈëÄúµÄÉí·İÖ¤"<<endl; 
+                cout<<"è¯·è¾“å…¥æ‚¨çš„èº«ä»½è¯"<<endl; 
                 cin>>id;
-                if (grade == 1) //½øÈë1µÈ²ÕÅÅ¶Ó¶ÓÁĞ
+                if (grade == 1) //è¿›å…¥1ç­‰èˆ±æ’é˜Ÿé˜Ÿåˆ—
 				{
                     info->wQgrade1 = enqueue(info->wQgrade1, name, need, id);
                 } 
-				else //½øÈë2µÈ²ÕÅÅ¶Ó¶ÓÁĞ
+				else //è¿›å…¥2ç­‰èˆ±æ’é˜Ÿé˜Ÿåˆ—
 				{
                     info->wQgrade2 = enqueue(info->wQgrade2, name, need, id);
                 }
-                cout<<"ÅÅ¶Ó³É¹¦"<<endl; 
+                cout<<"æ’é˜ŸæˆåŠŸ"<<endl; 
             } 	
         }
     }
@@ -269,14 +272,14 @@ void dingpiao()
 
 
 
-//¸ù¾İ×Ô¼ºÊäÈëµÄº½°à±êºÅ²éÑ¯ÊÇ·ñ´æÔÚ²¢·µ»Ø½Úµã
+//æ ¹æ®è‡ªå·±è¾“å…¥çš„èˆªç­æ ‡å·æŸ¥è¯¢æ˜¯å¦å­˜åœ¨å¹¶è¿”å›èŠ‚ç‚¹
 hangban *find() 
 {
     char number[10];
     int i = 0;
-    cout<<"ÇëÊäÈëº½°à±àºÅ"<<endl; 
+    cout<<"è¯·è¾“å…¥èˆªç­ç¼–å·"<<endl; 
     cin>>number;
-    hangban *p = pFlight->next; //Í·½áµãµÄÏÂÒ»¸ö½Úµã¿ªÊ¼±éÀú
+    hangban *p = pFlight->next; //å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å¼€å§‹éå†
     while (p != NULL) 
 	{
         if (!strcmp(number, p->hbID))
@@ -288,16 +291,16 @@ hangban *find()
 
 
 void addlink(CList &head, int need, char name[], char id[],char day[],int grade)
-//²åÈëµ½ÒÑ¾­¶©Æ±¿Í»§Á´±í 
+//æ’å…¥åˆ°å·²ç»è®¢ç¥¨å®¢æˆ·é“¾è¡¨ 
 {
-    CList new1;//´´½¨Ò»¸öĞÂ½Úµã 
+    CList new1;//åˆ›å»ºä¸€ä¸ªæ–°èŠ‚ç‚¹ 
     new1 = (CNode *) malloc(sizeof(CNode));
     strcpy(new1->name, name);
     strcpy(new1->ID, id);
     strcpy(new1->day,day);
     new1->num = need;
     new1->dengji = grade;
-    new1->next = head->next;//Í·²åÈë·¨¼ÓÈë³ÉÔ±Ãûµ¥Óò
+    new1->next = head->next;//å¤´æ’å…¥æ³•åŠ å…¥æˆå‘˜åå•åŸŸ
     head->next = new1;
     return;
 }
@@ -305,7 +308,7 @@ void addlink(CList &head, int need, char name[], char id[],char day[],int grade)
 
 void fightinfo(hangban *p) 
 {
-    cout << "Æğµã  ÖÕµã  ±àºÅ  ·É»úºÅ  ·ÉĞĞÈÕÆÚ  ×ÜÔØ¿Í  ÓàÆ±Á¿  1¼¶ÓàÁ¿  2¼¶ÓàÁ¿" << endl;
+    cout << "èµ·ç‚¹  ç»ˆç‚¹  ç¼–å·  é£æœºå·  é£è¡Œæ—¥æœŸ  æ€»è½½å®¢  ä½™ç¥¨é‡  1çº§ä½™é‡  2çº§ä½™é‡" << endl;
     cout << p->qidian << "  " << p->zhongdian << "  " << p->hbID << "     " << p->hbnum << "     " << p->day << "     "
                       << p->maxnum << "     " << p->less << "     " << p->lessgrade1 << "     " << p->lessgrade2 << endl;
 }
@@ -313,7 +316,7 @@ void fightinfo(hangban *p)
 
 
 LinkQueue enqueue(LinkQueue &q, char name[], int need, char id[])
-//Èë¶Ó£¬Ôö¼ÓÅÅ¶ÓµÈºòµÄ¿Í»§Ãûµ¥Óò
+//å…¥é˜Ÿï¼Œå¢åŠ æ’é˜Ÿç­‰å€™çš„å®¢æˆ·åå•åŸŸ
 {
     Phb new1;
     new1 = (Phb) malloc(sizeof(QhbNode));
@@ -326,47 +329,47 @@ LinkQueue enqueue(LinkQueue &q, char name[], int need, char id[])
     return q;
 }
 
-void tuipiao() //ÍËÆ±¹¦ÄÜ 
+void tuipiao() //é€€ç¥¨åŠŸèƒ½ 
 {
     hangban *info;
     int grade;
-    CNode *p1, *p2, *head;//p1Îª±éÀúÖ¸Õë£¬p2Ö¸Ïòp1µÄÇ°Çı
-    char name[20];//¿Í»§ĞÕÃû
-    char id[20];//¿Í»§Éí·İÖ¤
+    CNode *p1, *p2, *head;//p1ä¸ºéå†æŒ‡é’ˆï¼Œp2æŒ‡å‘p1çš„å‰é©±
+    char name[20];//å®¢æˆ·å§“å
+    char id[20];//å®¢æˆ·èº«ä»½è¯
     char day[20];
-    info = find();//¸´ÖÆ½ÚµãĞÅÏ¢¸øinfo£¬findº¯Êı¸ù¾İº½°à±àºÅ·µ»Ø¸Ãº½°à½ÚµãµÄÖ¸Õë
+    info = find();//å¤åˆ¶èŠ‚ç‚¹ä¿¡æ¯ç»™infoï¼Œfindå‡½æ•°æ ¹æ®èˆªç­ç¼–å·è¿”å›è¯¥èˆªç­èŠ‚ç‚¹çš„æŒ‡é’ˆ
     while (info == NULL)
 	{
-        cout<<"Ã»ÓĞÕâ¸öº½°à£¬ÇëÖØĞÂÊäÈë"<<endl; 
+        cout<<"æ²¡æœ‰è¿™ä¸ªèˆªç­ï¼Œè¯·é‡æ–°è¾“å…¥"<<endl; 
         tuipiao();
     }
-    head = info->cusLinkList;//headÎª¸Ãº½°àµÄµÄ³ËÔ±Ãûµ¥ÓòµÄÍ·Ö¸Õë
-    p1 = head->next;    //´øÍ·½áµãµÄÖ¸Õë£¬head->next ¿ªÊ¼±éÀú
-    cout<<"ÇëÊäÈëÄãµÄĞÕÃû: "<<endl;
+    head = info->cusLinkList;//headä¸ºè¯¥èˆªç­çš„çš„ä¹˜å‘˜åå•åŸŸçš„å¤´æŒ‡é’ˆ
+    p1 = head->next;    //å¸¦å¤´ç»“ç‚¹çš„æŒ‡é’ˆï¼Œhead->next å¼€å§‹éå†
+    cout<<"è¯·è¾“å…¥ä½ çš„å§“å: "<<endl;
     cin>>name;
-    cout<<"ÇëÊäÈëÄãµÄÉí·İÖ¤ºÅÂë:"<<endl; 
+    cout<<"è¯·è¾“å…¥ä½ çš„èº«ä»½è¯å·ç :"<<endl; 
     cin>>id;
-    cout<<"ÇëÊäÈë·ÉĞĞÊ±¼ä"<<endl; 
+    cout<<"è¯·è¾“å…¥é£è¡Œæ—¶é—´"<<endl; 
     cin>>day;
     p2 = head;
     while (p1 != NULL) 
 	{
-		//¶Ô±ÈĞÕÃûºÍÉí·İÖ¤ 
+		//å¯¹æ¯”å§“åå’Œèº«ä»½è¯ 
         if ((strcmp(name, p1->name) == 0) && (strcmp(id, p1->ID) == 0)&&(strcmp(day, p1->day) == 0)) break;
         p2 = p1;
         p1 = p1->next;
     }
     if (p1 == NULL) 
 	{
-        cout<<"¶Ô²»Æğ£¬ÄãÃ»ÓĞ¶©¹ıÆ±»òĞÕÃûºÍÉí·İÖ¤,Óë·ÉĞĞÖÜÆÚ²»¶ÔÓ¦"<<endl;
+        cout<<"å¯¹ä¸èµ·ï¼Œä½ æ²¡æœ‰è®¢è¿‡ç¥¨æˆ–å§“åå’Œèº«ä»½è¯,ä¸é£è¡Œå‘¨æœŸä¸å¯¹åº”"<<endl;
         return;
     } 
 	else 
-	{//ÍËÆ±³É¹¦
-        //´Ó³Ë¿ÍÃûµ¥ÓòÖĞÒÆ³ı¸Ã½Úµã
+	{//é€€ç¥¨æˆåŠŸ
+        //ä»ä¹˜å®¢åå•åŸŸä¸­ç§»é™¤è¯¥èŠ‚ç‚¹
         grade = p1->dengji;
         p2->next = p1->next;
-        //¼Ó»Ø¸Ãº½°àµÄÊ£ÓàÆ±
+        //åŠ å›è¯¥èˆªç­çš„å‰©ä½™ç¥¨
         info->less += p1->num;
         if (grade == 1) 
 		{
@@ -376,7 +379,7 @@ void tuipiao() //ÍËÆ±¹¦ÄÜ
 		{
             info->lessgrade2 += p1->num;
         }
-        cout<<name<<"ÍËÆ±³É¹¦"<<endl; 
+        cout<<name<<"é€€ç¥¨æˆåŠŸ"<<endl; 
     }
 }
 
@@ -386,39 +389,39 @@ int zengjiaFlight()
     hangban *q;
     hangban *p = pFlight;
     int y = 1;
-	cout << "ÇëÒÀ´ÎÊäÈëÒÔÏÂÄÚÈİ" << endl;
+	cout << "è¯·ä¾æ¬¡è¾“å…¥ä»¥ä¸‹å†…å®¹" << endl;
     system("pause");
     while (y != 0) 
 	{
         q = new hangban;
         if (q == NULL)
             return 0;
-        cout << "ÇëÊäÈëº½°à±àºÅ" << endl;
+        cout << "è¯·è¾“å…¥èˆªç­ç¼–å·" << endl;
         cin >> q->hbID;
         int t = duibiFlight(pFlight, q->hbID);
         if (t == 0) 
 		{
-            cout << "¸Ãº½°à±àºÅÒÑ¾­´æÔÚ£¬ÇëÖØĞÂÊäÈëº½°à±àºÅ" << endl;
+            cout << "è¯¥èˆªç­ç¼–å·å·²ç»å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥èˆªç­ç¼–å·" << endl;
             continue;
         }
-        cout << "ÇëÊäÈëÆğµãÕ¾Ãû" << endl;
+        cout << "è¯·è¾“å…¥èµ·ç‚¹ç«™å" << endl;
         cin >> q->qidian;
-        cout << "ÇëÊäÈëÖÕµãÕ¾Ãû" << endl;
+        cout << "è¯·è¾“å…¥ç»ˆç‚¹ç«™å" << endl;
         cin >> q->zhongdian;
-        cout << "ÇëÊäÈëĞÍºÅ" << endl;
+        cout << "è¯·è¾“å…¥å‹å·" << endl;
         cin >> q->hbnum;
-        cout << "ÇëÊäÈë·ÉĞĞÈÕÆÚ" << endl;
+        cout << "è¯·è¾“å…¥é£è¡Œæ—¥æœŸ" << endl;
         cin >> q->day;
-        cout << "ÇëÊäÈë³Ë¿Í¶¨¶î" << endl;
+        cout << "è¯·è¾“å…¥ä¹˜å®¢å®šé¢" << endl;
         cin >> q->maxnum;
         q->less = q->maxnum;
-        cout << "ÇëÊäÈë1µÈÆ±ÊıÄ¿" <<endl;
+        cout << "è¯·è¾“å…¥1ç­‰ç¥¨æ•°ç›®" <<endl;
         cin >> q->lessgrade1;
         q->lessgrade2 = q->maxnum - q->lessgrade1;
         q->next = p->next;
         p->next = q;
-        cout << "ÊÇ·ñ¼ÌĞøÂ¼Èëº½°àĞÅÏ¢£¨ÈÎÒâÊı×Ö¼ÌĞø£¬0±íÊ¾Í£Ö¹£©¡£\n";
-        cout << "ÇëÊäÈë£º";
+        cout << "æ˜¯å¦ç»§ç»­å½•å…¥èˆªç­ä¿¡æ¯ï¼ˆä»»æ„æ•°å­—ç»§ç»­ï¼Œ0è¡¨ç¤ºåœæ­¢ï¼‰ã€‚\n";
+        cout << "è¯·è¾“å…¥ï¼š";
         cin >> y;
     }
     return 0;
@@ -428,7 +431,7 @@ int zengjiaFlight()
 int shanchuFlight() 
 {
     string ID;
-    cout << "ÇëÊäÈëº½°àID" << endl;
+    cout << "è¯·è¾“å…¥èˆªç­ID" << endl;
     cin >> ID;
     hangban *pre = pFlight;
     hangban *p = pre->next;
@@ -448,18 +451,18 @@ int shanchuFlight()
 
 
 int duibiFlight(hangban *flight, char ID[])
-//¶Ô±Èº½°àµÄ±àºÅ£¬·ÀÖ¹Ôö¼Óº½°àÊ±£¬³öÏÖÖØ¸´ 
+//å¯¹æ¯”èˆªç­çš„ç¼–å·ï¼Œé˜²æ­¢å¢åŠ èˆªç­æ—¶ï¼Œå‡ºç°é‡å¤ 
 {
     hangban *p = flight;
     while (p != NULL)
 	{
         if (!strcmp(ID, p->hbID)) 
 		{
-            return 0;//º½°àIDÖØ¸´
+            return 0;//èˆªç­IDé‡å¤
         }
         p = p->next;
     }
-    //ID²»ÖØ¸´
+    //IDä¸é‡å¤
     return 1;
 
 }
@@ -470,25 +473,25 @@ void sousuoFace()
     int i;
     cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                                    ";
-        cout<<"ËÑË÷´°¿Ú"<<endl; 
+        cout<<"æœç´¢çª—å£"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
         cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             1.ËÑË÷º½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             1.æœç´¢èˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             2.·µ»ØÉÏÒ»¼¶                    "<<"|"<<endl;
+		cout<<"|"<<"             2.è¿”å›ä¸Šä¸€çº§                    "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÄúµÄÑ¡Ôñ(1-2,·ñÔòÎŞĞ§£¡)"<<endl; 
+		cout<<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(1-2,å¦åˆ™æ— æ•ˆï¼)"<<endl; 
 		cout<<"                                  ";
-		cout<<"ÄúµÄÑ¡ÔñÊÇ:";    
+		cout<<"æ‚¨çš„é€‰æ‹©æ˜¯:";    
     cin >> i;
     switch (i) {
         case 1:
@@ -509,12 +512,12 @@ void sousuoflight()
 {
     string qidian, zhongdian;
     int flag = 0;
-    cout << "ÇëÊäÈëÆğµãÕ¾Ãû:";
+    cout << "è¯·è¾“å…¥èµ·ç‚¹ç«™å:";
     cin >> qidian;
-    cout << "ÇëÊäÈëÖÕµãÕ¾Ãû:";
+    cout << "è¯·è¾“å…¥ç»ˆç‚¹ç«™å:";
     cin >> zhongdian;
     hangban *p = pFlight->next;
-    cout << "Æğµã  ÖÕµã  ±àºÅ  ·É»úºÅ  ·ÉĞĞÈÕÆÚ  ×ÜÔØ¿Í  ÓàÆ±Á¿  1¼¶ÓàÁ¿  2¼¶ÓàÁ¿" << endl;
+    cout << "èµ·ç‚¹  ç»ˆç‚¹  ç¼–å·  é£æœºå·  é£è¡Œæ—¥æœŸ  æ€»è½½å®¢  ä½™ç¥¨é‡  1çº§ä½™é‡  2çº§ä½™é‡" << endl;
     while (p != NULL) {
         if (qidian == p->qidian && zhongdian == p->zhongdian) 
 		{
@@ -526,7 +529,7 @@ void sousuoflight()
     }
     cout <<endl <<endl;
     if (flag == 0)
-        cout << "±§Ç¸£¡²»´æÔÚ¸Ãº½°à£¡" << endl;
+        cout << "æŠ±æ­‰ï¼ä¸å­˜åœ¨è¯¥èˆªç­ï¼" << endl;
 }
 
 
@@ -535,25 +538,25 @@ void dingpiaoFace()
     int i;
     cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                                    ";
-        cout<<"¶©Æ±´°¿Ú"<<endl; 
+        cout<<"è®¢ç¥¨çª—å£"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
-        cout<<"|"<<"             1.È·ÈÏ¶©Æ±                      "<<"|"<<endl;
+        cout<<"|"<<"             1.ç¡®è®¤è®¢ç¥¨                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             2.ËÑË÷º½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             2.æœç´¢èˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             3.ä¯ÀÀº½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             3.æµè§ˆèˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             4.·µ»ØÉÏ¼¶²Ëµ¥                  "<<"|"<<endl;
+		cout<<"|"<<"             4.è¿”å›ä¸Šçº§èœå•                  "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÄúµÄÑ¡Ôñ(1-4,·ñÔòÎŞĞ§£¡)"<<endl; 
+		cout<<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(1-4,å¦åˆ™æ— æ•ˆï¼)"<<endl; 
 		cout<<"                                  ";
-		cout<<"ÄúµÄÑ¡ÔñÊÇ:";    
+		cout<<"æ‚¨çš„é€‰æ‹©æ˜¯:";    
     cin >> i;
     switch (i) {
         case 1:
@@ -581,30 +584,30 @@ void dingpiaoFace()
 
 
 
-void tuipiaoFace()//ÍËÆ±Ä£¿é½çÃæ
+void tuipiaoFace()//é€€ç¥¨æ¨¡å—ç•Œé¢
 {
 	int i;
     cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                                    ";
-        cout<<"ÍËÆ±´°¿Ú"<<endl; 
+        cout<<"é€€ç¥¨çª—å£"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
         cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             1.°ìÀíÍËÆ±                      "<<"|"<<endl;
+		cout<<"|"<<"             1.åŠç†é€€ç¥¨                      "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             2.·µ»ØÉÏ¼¶²Ëµ¥                  "<<"|"<<endl;
+		cout<<"|"<<"             2.è¿”å›ä¸Šçº§èœå•                  "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÄúµÄÑ¡Ôñ(1-2,·ñÔòÎŞĞ§£¡)"<<endl; 
+		cout<<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(1-2,å¦åˆ™æ— æ•ˆï¼)"<<endl; 
 		cout<<"                                  ";
-		cout<<"ÄúµÄÑ¡ÔñÊÇ:";    
+		cout<<"æ‚¨çš„é€‰æ‹©æ˜¯:";    
         cin >> i;
     switch (i) 
 	{
@@ -629,14 +632,14 @@ void pricusInfo()
     info = find();
     if (info == NULL) 
 	{
-        cout << "Ã»ÓĞÕâ¸öº½°à" << endl;
+        cout << "æ²¡æœ‰è¿™ä¸ªèˆªç­" << endl;
         return;
     }
-    // Í·½áµãµÄÏÂÒ»¸ö½Úµã¿ªÊ¼±éÀú
+    // å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å¼€å§‹éå†
     p = info->cusLinkList->next;
     if (p != NULL) 
 	{
-        cout << "¿Í»§ĞÕÃû   ¶©Æ±Êı¶î   ²ÕÎ»µÈ¼¶       Éí·İÖ¤ºÅ  " << endl;
+        cout << "å®¢æˆ·å§“å   è®¢ç¥¨æ•°é¢   èˆ±ä½ç­‰çº§       èº«ä»½è¯å·  " << endl;
         while (p) 
 		{
             cout << p->name << "\t\t" << p->num << "\t" << p->dengji << "\t" <<p->ID<< endl;
@@ -645,7 +648,7 @@ void pricusInfo()
     } 
 	else 
 	{
-        cout << "¸Ãº½°àÃ»ÓĞ¿Í»§ĞÅÏ¢!!" << endl;
+        cout << "è¯¥èˆªç­æ²¡æœ‰å®¢æˆ·ä¿¡æ¯!!" << endl;
     }
 }
 
@@ -653,7 +656,7 @@ void printfall(hangban *pflight)
 {
     hangban *p;
     p = pflight->next;
-    cout << "Æğµã  ÖÕµã  ±àºÅ  ·É»úĞÍºÅ  ·ÉĞĞÈÕÆÚ  ×ÜÔØ¿Í  ÓàÆ±Á¿  1¼¶ÓàÁ¿  2¼¶ÓàÁ¿ " << endl;
+    cout << "èµ·ç‚¹  ç»ˆç‚¹  ç¼–å·  é£æœºå‹å·  é£è¡Œæ—¥æœŸ  æ€»è½½å®¢  ä½™ç¥¨é‡  1çº§ä½™é‡  2çº§ä½™é‡ " << endl;
     while (p != NULL) 
 	{
         cout << p->qidian << "  " << p->zhongdian << "  " << p->hbID << "      " << p->hbnum << "     " << p->day << "   "
@@ -665,21 +668,21 @@ void printfall(hangban *pflight)
 
 int yonghudenglu()
 {
-		string account1="»ÆêÑ";
+		string account1="é»„æš„";
 		string passwords1="239007045";
-		string account2="Íõ·å";
+		string account2="ç‹å³°";
 		string passwords2="239007038";
-		string account3="µËºÆÓî";
+		string account3="é‚“æµ©å®‡";
 		string passwords3="239007049";
-		string account4="³Â¼ÇµÂ";
+		string account4="é™ˆè®°å¾·";
 		string passwords4="239007037";
-		string account5="Ğì¼Î³Ï";
+		string account5="å¾å˜‰è¯š";
 		string passwords5="239007036";
 		string account;
 		string passwords;
 		cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                                  ";
-        cout<<"ÓÃ»§µÇÂ¼Ò³Ãæ"<<endl; 
+        cout<<"ç”¨æˆ·ç™»å½•é¡µé¢"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
@@ -687,15 +690,15 @@ int yonghudenglu()
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"      ÇëÊäÈëÕıÈ·µÄÕËºÅÓëÃÜÂëÒÔ½øÈëÏµÍ³       "<<"|"<<endl;
+		cout<<"|"<<"      è¯·è¾“å…¥æ­£ç¡®çš„è´¦å·ä¸å¯†ç ä»¥è¿›å…¥ç³»ç»Ÿ       "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"          (·µ»ØÊ×Ò³ÇëÊäÈëexit)               "<<"|"<<endl;
+		cout<<"|"<<"          (è¿”å›é¦–é¡µè¯·è¾“å…¥exit)               "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÕËºÅ:"<<endl;
+		cout<<"è¯·è¾“å…¥è´¦å·:"<<endl;
 		cout<<"                                  ";
 		cout<<"account:"; 
 		cin>>account;
@@ -704,7 +707,7 @@ int yonghudenglu()
 		{
 			denglu();
 		 } 
-		cout<<"ÇëÊäÈëÃÜÂë:"<<endl;
+		cout<<"è¯·è¾“å…¥å¯†ç :"<<endl;
 		cout<<"                                  ";
 		cout<<"password:"; 
 		cin>>passwords;
@@ -717,7 +720,7 @@ int yonghudenglu()
 		else
 		{
 			cout<<"                                  ";
-			cout<<"ÊäÈë´íÎó£¬°´ÈÎÒâ¼üÖØĞÂÊäÈë"<<endl; 
+			cout<<"è¾“å…¥é”™è¯¯ï¼ŒæŒ‰ä»»æ„é”®é‡æ–°è¾“å…¥"<<endl; 
 		}
 } 
 
@@ -729,7 +732,7 @@ int guanliyuandenglu()
 	string shuru;
 		cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                                 ";
-        cout<<"¹ÜÀíÔ±µÇÂ¼Ò³Ãæ"<<endl; 
+        cout<<"ç®¡ç†å‘˜ç™»å½•é¡µé¢"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
@@ -737,22 +740,22 @@ int guanliyuandenglu()
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"        ÇëÊäÈë¹ÜÀíÔ±ÃÜÂëÒÔÑéÖ¤Éí·İ           "<<"|"<<endl;
+		cout<<"|"<<"        è¯·è¾“å…¥ç®¡ç†å‘˜å¯†ç ä»¥éªŒè¯èº«ä»½           "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"          (·µ»ØÊ×Ò³ÇëÊäÈëexit)               "<<"|"<<endl;
+		cout<<"|"<<"          (è¿”å›é¦–é¡µè¯·è¾“å…¥exit)               "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÃÜÂë:"<<endl;
+		cout<<"è¯·è¾“å…¥å¯†ç :"<<endl;
 		cout<<"                                  ";
 		cout<<"password:"; 
 		cin>>shuru;
 		if(shuru==passwords)
 		{
 			cout<<"                                  ";
-			cout<<"¹ÜÀíÔ±Éí·İÑéÖ¤³É¹¦£¡"<<endl; 
+			cout<<"ç®¡ç†å‘˜èº«ä»½éªŒè¯æˆåŠŸï¼"<<endl; 
 			guanliyuanyemian();
 		}
 		else if(shuru=="exit") 
@@ -762,7 +765,7 @@ int guanliyuandenglu()
 		else
 		{
 			cout<<"                                  ";
-			cout<<"Éí·İÑéÖ¤Ê§°Ü£¬°´ÈÎÒâ¼üÖØĞÂÊäÈë"<<endl; 
+			cout<<"èº«ä»½éªŒè¯å¤±è´¥ï¼ŒæŒ‰ä»»æ„é”®é‡æ–°è¾“å…¥"<<endl; 
 			system("pause");
 			guanliyuandenglu(); 
 		 } 
@@ -776,27 +779,27 @@ int guanliyuanyemian()
 	    do{
 	    cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                                    ";
-        cout<<"¹ÜÀíÔ±Ò³Ãæ"<<endl; 
+        cout<<"ç®¡ç†å‘˜é¡µé¢"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
         cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             1.²åÈëº½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             1.æ’å…¥èˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             2.É¾³ıº½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             2.åˆ é™¤èˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             3.ä¯ÀÀº½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             3.æµè§ˆèˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             4.²éÑ¯¿Í»§ĞÅÏ¢                  "<<"|"<<endl;
+		cout<<"|"<<"             4.æŸ¥è¯¢å®¢æˆ·ä¿¡æ¯                  "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             5.·µ»ØÊ×Ò³                      "<<"|"<<endl;
+		cout<<"|"<<"             5.è¿”å›é¦–é¡µ                      "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÄúµÄÑ¡Ôñ(1-2,·ñÔòÎŞĞ§£¡)"<<endl; 
+		cout<<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(1-2,å¦åˆ™æ— æ•ˆï¼)"<<endl; 
 		cout<<"                                  ";
-		cout<<"ÄúµÄÑ¡ÔñÊÇ:";    
+		cout<<"æ‚¨çš„é€‰æ‹©æ˜¯:";    
         cin >> i;
         switch (i) {
             case 1:
@@ -807,11 +810,11 @@ int guanliyuanyemian()
             case 2:
                 if (1 == shanchuFlight()) 
 				{
-                	cout << "É¾³ı³É¹¦" << endl;
+                	cout << "åˆ é™¤æˆåŠŸ" << endl;
                 } 
 				else 
 				{
-                	cout << "Ã»ÓĞÕâ¸öº½°à£¬É¾³ıÊ§°Ü£¡" << endl;
+                	cout << "æ²¡æœ‰è¿™ä¸ªèˆªç­ï¼Œåˆ é™¤å¤±è´¥ï¼" << endl;
                 }
                 system("pause");
             	guanliyuanyemian();
@@ -842,29 +845,29 @@ int denglu()
     int i;
     do {
     	cout<<endl<<endl<<endl;
-    	cout<<"title£ºº½¿Õ¿ÍÔË¶©Æ±ÏµÍ³-½­ËÕÊ¦·¶´óÑ§Êı¾İ½á¹¹¿ÎÌâ×÷Òµ-24.5"<<endl;
-		cout<<"author£º»ÆêÑ£¬Íõ·æ£¬Ğì¼Î³Ï,µËºÆÓî£¬³Â¼ÇµÂ"; 
+    	cout<<"titleï¼šèˆªç©ºå®¢è¿è®¢ç¥¨ç³»ç»Ÿ-æ±Ÿè‹å¸ˆèŒƒå¤§å­¦æ•°æ®ç»“æ„è¯¾é¢˜ä½œä¸š-24.5"<<endl;
+		cout<<"authorï¼šé»„æš„ï¼Œç‹é”‹ï¼Œå¾å˜‰è¯š,é‚“æµ©å®‡ï¼Œé™ˆè®°å¾·"; 
 		cout<<endl<<endl<<endl;
         cout<<"                                                     ";
-        cout<<"µÇÂ¼Ò³Ãæ"<<endl; 
+        cout<<"ç™»å½•é¡µé¢"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
         cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             1.ÓÃ»§µÇÂ¼                      "<<"|"<<endl;
+		cout<<"|"<<"             1.ç”¨æˆ·ç™»å½•                      "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             2.¹ÜÀíÔ±µÇÂ¼                    "<<"|"<<endl;
+		cout<<"|"<<"             2.ç®¡ç†å‘˜ç™»å½•                    "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"|"<<"                                             "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÄúµÄÑ¡Ôñ(1-2,·ñÔòÎŞĞ§£¡)"<<endl; 
+		cout<<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(1-2,å¦åˆ™æ— æ•ˆï¼)"<<endl; 
 		cout<<"                                  ";
-		cout<<"ÄúµÄÑ¡ÔñÊÇ:";    
+		cout<<"æ‚¨çš„é€‰æ‹©æ˜¯:";    
         cin >> i;
         switch (i) {
             case 1:
@@ -888,25 +891,25 @@ int menu()
     do {
 		cout<<endl<<endl<<endl<<endl<<endl;
         cout<<"                                             ";
-        cout<<"»¶Ó­À´µ½º½¿Õ¿ÍÔË¶©Æ±ÏµÍ³"<<endl; 
+        cout<<"æ¬¢è¿æ¥åˆ°èˆªç©ºå®¢è¿è®¢ç¥¨ç³»ç»Ÿ"<<endl; 
         cout<<"                                  ";
         cout<<"-----------------------------------------------"<<endl;
         cout<<"                                  ";
-        cout<<"|"<<"             1.²éÑ¯º½°à                      "<<"|"<<endl;
+        cout<<"|"<<"             1.æŸ¥è¯¢èˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             2.ËÑË÷º½°à                      "<<"|"<<endl;
+		cout<<"|"<<"             2.æœç´¢èˆªç­                      "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             3.¶©Æ±                          "<<"|"<<endl;
+		cout<<"|"<<"             3.è®¢ç¥¨                          "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             4.ÍËÆ±                          "<<"|"<<endl;
+		cout<<"|"<<"             4.é€€ç¥¨                          "<<"|"<<endl;
 		cout<<"                                  ";
-		cout<<"|"<<"             5.ÍË³öÏµÍ³                      "<<"|"<<endl;
+		cout<<"|"<<"             5.é€€å‡ºç³»ç»Ÿ                      "<<"|"<<endl;
 		cout<<"                                  ";
 		cout<<"-----------------------------------------------"<<endl;
 		cout<<"                                  ";
-		cout<<"ÇëÊäÈëÄúµÄÑ¡Ôñ(1-5,·ñÔòÎŞĞ§£¡)"<<endl; 
+		cout<<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(1-5,å¦åˆ™æ— æ•ˆï¼)"<<endl; 
 		cout<<"                                  ";
-		cout<<"ÄúµÄÑ¡ÔñÊÇ:";    
+		cout<<"æ‚¨çš„é€‰æ‹©æ˜¯:";    
         cin >> i;
         switch (i) {
             case 1:
@@ -920,7 +923,7 @@ int menu()
                 menu();
                 break;
             case 3:
-                dingpiaoFace();  // ¶©Æ±½çÃæ
+                dingpiaoFace();  // è®¢ç¥¨ç•Œé¢
                 system("pause");
                 menu();
                 break; 
@@ -940,9 +943,9 @@ int menu()
 int main() 
 {
 	system("color F1");
-    initFlight();//³õÊ¼»¯º½°àÁ´±í 
-    Create(flight1);//½«º½±êĞÅÏ¢²åÈëÁ´±í 
-    denglu();    //²Ëµ¥
+    initFlight();//åˆå§‹åŒ–èˆªç­é“¾è¡¨ 
+    Create(flight1);//å°†èˆªæ ‡ä¿¡æ¯æ’å…¥é“¾è¡¨ 
+    denglu();    //èœå•
     return 0;
 }
 
