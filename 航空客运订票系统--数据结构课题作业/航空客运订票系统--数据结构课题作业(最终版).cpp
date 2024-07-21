@@ -703,9 +703,7 @@ int yonghudenglu()
 		cout<<"                                  ";
 		cout<<"password:"; 
 		cin>>passwords;
-		if((account==account1&&passwords==passwords1)||(account==account2&&passwords==passwords2)||
-		(account==account3&&passwords==passwords3)||(account==account4&&passwords==passwords4)||
-		 (account==account5&&passwords==passwords5))
+		if((account==account1&&passwords==passwords1))
 		{
 			menu();
 		}
