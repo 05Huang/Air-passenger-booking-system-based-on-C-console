@@ -5,7 +5,7 @@
 
 ---
 - 登陆界面
-  ![image]("https://github.com/05Huang/Air-passenger-booking-system-based-on-C-console/blob/main/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-07-21%20202042.png"=200*300)
+  ![image](https://github.com/05Huang/Air-passenger-booking-system-based-on-C-console/blob/main/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-07-21%20202042.png)
 - 用户界面
   ![image](https://github.com/05Huang/Air-passenger-booking-system-based-on-C-console/blob/main/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-07-21%20202152.png)
 - 管理员界面
