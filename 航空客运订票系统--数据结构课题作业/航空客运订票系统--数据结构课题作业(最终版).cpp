@@ -670,14 +670,6 @@ int yonghudenglu()
 {
 		string account1="黄暄";
 		string passwords1="239007045";
-		string account2="王峰";
-		string passwords2="239007038";
-		string account3="邓浩宇";
-		string passwords3="239007049";
-		string account4="陈记德";
-		string passwords4="239007037";
-		string account5="徐嘉诚";
-		string passwords5="239007036";
 		string account;
 		string passwords;
 		cout<<endl<<endl<<endl<<endl<<endl;
